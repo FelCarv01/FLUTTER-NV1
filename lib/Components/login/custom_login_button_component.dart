@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projeto01/controllers/login_Controller.dart';
+import 'package:projeto01/controllers/login_controller.dart';
 
-class CustonLoginButtonComponent extends StatelessWidget {
+class CustomLoginButtonComponent extends StatelessWidget {
   final LoginController loginController;
-  const CustonLoginButtonComponent({
+  const CustomLoginButtonComponent({
     Key? key,
     required this.loginController,
   }) : super(key: key);
