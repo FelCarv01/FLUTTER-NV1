@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
+import 'package:projeto01/Components/login/custon_login_button_component.dart';
 import 'package:projeto01/controllers/login_Controller.dart';
 
 class LoginPage extends StatelessWidget {
   final LoginController _controller = LoginController();
-
   LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -40,30 +41,8 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 22,
             ),
-            ValueListenableBuilder<bool>(
-              valueListenable: _controller.inloader,
-              builder: (_, inloader, __) => inloader
-                  ? const CircularProgressIndicator()
-                  : ElevatedButton(
-                      onPressed: () {
-                        _controller.auth().then((result) {
-                          if (result) {
-                            Navigator.of(context).pushReplacementNamed('/home');
-                          } else {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              backgroundColor: Colors.red,
-                              duration: Duration(seconds: 3),
-                              content: Text(
-                                'Login ou senha incorretos!',
-                                textAlign: TextAlign.center,
-                              ),
-                            ));
-                          }
-                        });
-                      },
-                      child: const Text('Login'),
-                    ),
+            CustonLoginButtonComponent(
+              loginController: _controller,
             ),
           ],
         ),
