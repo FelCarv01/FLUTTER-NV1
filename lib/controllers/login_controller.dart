@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto01/services/prefs_service.dart';
 
 class LoginController {
   ValueNotifier<bool> inloader = ValueNotifier<bool>(false);
@@ -11,8 +12,12 @@ class LoginController {
 
   Future<bool> auth() async {
     inloader.value = true;
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     inloader.value = false;
-    return _login == 'admin' && _pass == '123';
+    if (_login == 'admin' && _pass == '123') {
+      PrefsService.save(_login!);
+      return true;
+    }
+    return false;
   }
 }
